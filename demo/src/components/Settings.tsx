@@ -6,7 +6,7 @@ import {
     Slider,
     Typography,
     Switch,
-} from '@mui/material';
+} from '@material-ui/core';
 import '../style/Settings.scss';
 
 export interface SettingsT {

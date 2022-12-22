@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import Example from './Example'
 import SecondExample from './SecondExample'
 import '../style/App.scss';
-import { Button, ThemeProvider, Typography } from '@mui/material';
+import { Button, ThemeProvider, Typography } from '@material-ui/core';
 import DemoTheme from '../style/Theme';
-import { GitHub, CloudDownload, Star } from '@mui/icons-material';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { GitHub, CloudDownload, Star } from '@material-ui/icons';
+
 import axios from 'axios';
 
 const App = () => {
@@ -22,7 +22,6 @@ const App = () => {
 
 
     return (
-        <StyledEngineProvider injectFirst>
             <ThemeProvider theme={DemoTheme}>
                 <div className="root">
                     
@@ -137,7 +136,6 @@ const App = () => {
                     <SecondExample />
                 </div>
             </ThemeProvider>
-        </StyledEngineProvider>
     );
 };
 

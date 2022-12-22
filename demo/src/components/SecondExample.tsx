@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Carousel from 'react-material-ui-carousel';
+import Carousel from 'react-material-ui-carousel-alt';
 import {
     Paper,
     Button,
     Typography,
-} from '@mui/material'
+} from '@material-ui/core'
 
 import "../style/SecondExample.scss"
 import Settings, { DefaultSettingsT, SettingsT } from './Settings';

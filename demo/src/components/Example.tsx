@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Settings, { DefaultSettingsT, SettingsT } from './Settings';
-import Carousel from 'react-material-ui-carousel';
+import Carousel from 'react-material-ui-carousel-alt';
 import '../style/Example.scss';
 
 import {
@@ -10,7 +10,7 @@ import {
     Typography,
     Grid,
     Button,
-} from '@mui/material';
+} from '@material-ui/core';
 
 
 const Example = () => {

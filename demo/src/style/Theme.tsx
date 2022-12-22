@@ -1,13 +1,12 @@
-import { red } from '@mui/material/colors';
-import { Theme } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import { red } from '@material-ui/core/colors';
+import { Theme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 
 const typographyDefaultColor = 'lightgrey'
 
 
 const DemoTheme: Theme = createTheme({
     palette: {
-        mode: 'dark',
         background: {
             default: 'rgb(73, 73, 73)'
         },
