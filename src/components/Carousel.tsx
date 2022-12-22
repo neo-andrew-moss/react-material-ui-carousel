@@ -1,11 +1,11 @@
 import React, { ReactNode, useState, useEffect, useRef } from 'react';
 import { CarouselNavProps, CarouselProps } from './types';
 
-import { createStyles, makeStyles } from '@mui/styles';
-import { IconButton } from '@mui/material';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import IconButton  from '@material-ui/core/IconButton';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 import { AnimatePresence, motion, MotionProps, PanInfo } from 'framer-motion'
 
