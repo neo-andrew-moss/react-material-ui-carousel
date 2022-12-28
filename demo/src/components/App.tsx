@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Example from './Example'
 import SecondExample from './SecondExample'
+import Example3 from './ThirdExample';
 import '../style/App.scss';
 import { Button, ThemeProvider, Typography } from '@material-ui/core';
 import DemoTheme from '../style/Theme';
@@ -134,6 +135,7 @@ const App = () => {
 
                     <Example />
                     <SecondExample />
+                    <Example3/>
                 </div>
             </ThemeProvider>
     );
