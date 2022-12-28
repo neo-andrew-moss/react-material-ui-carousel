@@ -19,12 +19,10 @@ const styles = makeStyles(() =>
 		root: {
 			position: 'relative',
 			overflow: 'hidden',
-			// Display: 'flex',
-			// flexDirection: 'column'
 		},
 		item: {
 			position: 'absolute',
-			// Height: 'inherit',
+			height: '100%',
 			width: '100%',
 			//    FlexGrow: 1
 		},
@@ -107,6 +105,8 @@ type SanitizedCarouselProps = {
 	className: string;
 	children: ReactNode;
 
+	height: number | string | undefined;
+
 	index: number;
 	strictIndexing: boolean;
 
@@ -188,6 +188,8 @@ const sanitizeProps = (props: CarouselProps): SanitizedCarouselProps => {
 		className: props.className !== undefined ? props.className : '',
 		children: props.children ? props.children : [],
 
+		height: props.height,
+
 		index: props.index !== undefined ? props.index : 0,
 		strictIndexing:
             props.strictIndexing !== undefined ? props.strictIndexing : true,
@@ -249,7 +251,7 @@ export const Carousel = (props: CarouselProps) => {
 		prevActive: 0,
 		next: true,
 	});
-	const [height, setHeight] = useState<number>(0);
+	const [childrenHeight, setChildrenHeight] = useState<number>(0);
 	const [paused, setPaused] = useState<boolean>(false);
 
 	const classes = styles();
@@ -350,6 +352,8 @@ export const Carousel = (props: CarouselProps) => {
 		children,
 		className,
 
+		height,
+
 		stopAutoPlayOnHover,
 		animation,
 		duration,
@@ -419,8 +423,14 @@ export const Carousel = (props: CarouselProps) => {
 			onMouseOut={() => {
 				stopAutoPlayOnHover && setPaused(false);
 			}}
+			onFocus={() => {
+				stopAutoPlayOnHover && setPaused(true);
+			}}
+			onBlur={() => {
+				stopAutoPlayOnHover && setPaused(false);
+			}}
 		>
-			<div className={classes.itemWrapper} style={{height}}>
+			<div className={classes.itemWrapper} style={{height: height ? undefined : childrenHeight}}>
 				{Array.isArray(children) ? (
 					children.map((child, index) => (
 						<CarouselItem
@@ -434,7 +444,8 @@ export const Carousel = (props: CarouselProps) => {
 							swipe={swipe}
 							next={next}
 							prev={prev}
-							setHeight={setHeight}
+							height={height}
+							setHeight={setChildrenHeight}
 						/>
 					))
 				) : (
@@ -446,7 +457,8 @@ export const Carousel = (props: CarouselProps) => {
 						child={children}
 						animation={animation}
 						duration={duration}
-						setHeight={setHeight}
+						height={height}
+						setHeight={setChildrenHeight}
 					/>
 				)}
 			</div>
@@ -538,6 +550,7 @@ type CarouselItemProps = {
 	maxIndex: number;
 	duration: number;
 	child: ReactNode;
+	height?: number | string; // TODO: SMH why
 	setHeight: Function;
 };
 
@@ -551,6 +564,7 @@ const CarouselItem = ({
 	maxIndex,
 	duration,
 	child,
+	height,
 	setHeight,
 }: CarouselItemProps) => {
 	const classes = styles();
@@ -587,7 +601,7 @@ const CarouselItem = ({
 		if (divRef.current) {
 			setHeight(divRef.current.offsetHeight);
 		}
-	}, [divRef]);
+	}, [divRef, setHeight]);
 
 	const variants = {
 		leftwardExit: {
@@ -652,9 +666,9 @@ const CarouselItem = ({
 	duration /= 1000;
 
 	return (
-		<div className={classes.item} ref={divRef}>
+		<div className={classes.item} >
 			<AnimatePresence custom={isNext}>
-				<motion.div {...(swipe && dragProps)}>
+				<motion.div {...(swipe && dragProps)} style={{height: '100%'}}>
 					<motion.div
 						custom={isNext}
 						variants={variants}
@@ -663,9 +677,11 @@ const CarouselItem = ({
 							x: {type: 'tween', duration, delay: 0},
 							opacity: {duration},
 						}}
-						style={{position: 'relative'}}
+						style={{position: 'relative', height: '100%'}}
 					>
-						{child}
+						                        <div ref={divRef} style={{height}}>
+							{child}
+						</div>
 					</motion.div>
 				</motion.div>
 			</AnimatePresence>
