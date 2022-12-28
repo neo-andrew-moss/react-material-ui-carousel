@@ -1,4 +1,4 @@
-import React, {type ReactNode, useState, useEffect, useRef} from 'react';
+import React, {type ReactNode, useState, useEffect, useRef, useCallback} from 'react';
 import {type CarouselNavProps, type CarouselProps} from './types';
 
 import {createStyles, makeStyles} from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ import {
 	motion,
 	type MotionProps,
 	type PanInfo,
-} from 'framer-motion';
+} from 'framer-motion/dist/framer-motion';
 
 const styles = makeStyles(() =>
 	createStyles({
@@ -258,11 +258,12 @@ export const Carousel = (props: CarouselProps) => {
 
 	const sanitizedProps = sanitizeProps(props);
 
-	// ComponentDidMount
-	useEffect(() => {
-		const {index, changeOnFirstRender} = sanitizedProps;
-		setNext(index, true, changeOnFirstRender);
-	}, []);
+    // componentDidMount & onIndexChange
+    useEffect(() =>
+    {
+        const { index, changeOnFirstRender } = sanitizedProps;
+        setNext(index, true, changeOnFirstRender);
+    }, [sanitizedProps.index])
 
 	useInterval(() => {
 		const {autoPlay} = sanitizedProps;
@@ -272,9 +273,6 @@ export const Carousel = (props: CarouselProps) => {
 		}
 	}, sanitizedProps.interval);
 
-	useEffect(() => {
-		setNext(sanitizedProps.index, true);
-	}, [sanitizedProps.index, sanitizedProps.children]);
 
 	const next = (event: any) => {
 		const {children, cycleNavigation} = sanitizedProps;
@@ -430,7 +428,7 @@ export const Carousel = (props: CarouselProps) => {
 				stopAutoPlayOnHover && setPaused(false);
 			}}
 		>
-			<div className={classes.itemWrapper} style={{height: height ? undefined : childrenHeight}}>
+			<div className={classes.itemWrapper} style={{height: height ? height : childrenHeight}}>
 				{Array.isArray(children) ? (
 					children.map((child, index) => (
 						<CarouselItem
@@ -582,7 +580,6 @@ const CarouselItem = ({
 				return;
 			}
 
-			console.log(info);
 			if (info.offset.x > 0) {
 				prev && prev();
 			} else if (info.offset.x < 0) {
@@ -597,11 +594,27 @@ const CarouselItem = ({
 
 	const divRef = useRef<any>(null);
 
-	useEffect(() => {
-		if (divRef.current) {
-			setHeight(divRef.current.offsetHeight);
-		}
-	}, [divRef, setHeight]);
+    const checkAndSetHeight = useCallback(() => {
+        if (index !== state.active) return;
+        if (!divRef.current) return;
+
+        console.log(divRef.current.offsetHeight);
+        if (divRef.current.offsetHeight === 0)
+        {
+            setTimeout(() => checkAndSetHeight(), 100);
+        }
+        else
+        {
+            setHeight(divRef.current.offsetHeight);
+        }
+    }, [setHeight, state.active, index, divRef])
+
+    // Set height on every child change
+    useEffect(() =>
+    {
+        checkAndSetHeight();
+            
+    }, [checkAndSetHeight])
 
 	const variants = {
 		leftwardExit: {
