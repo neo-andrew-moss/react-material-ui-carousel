@@ -1,6 +1,6 @@
 # React Material UI Carousel Alt
 
-**:pushpin:** This is `react-material-ui-carousel` 3.0.0 with peerDeps pointing towards `@material-ui/*@4`
+**:pushpin:** This is `react-material-ui-carousel@^3` with peerDependencies pointing towards `@material-ui/*@4`
 
 ```bash
 npm install @material-ui/core
