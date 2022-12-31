@@ -1,9 +1,9 @@
-import React, {type ReactNode} from 'react';
+import React, {ReactNode} from 'react';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
-import {type SanitizedCarouselNavProps} from './util';
+import {SanitizedCarouselNavProps} from './util';
 
 const styles = makeStyles(() =>
 	createStyles({

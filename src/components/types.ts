@@ -1,5 +1,5 @@
-import {type ReactNode, type AriaAttributes} from 'react';
-import type React from 'react';
+import {ReactNode, AriaAttributes} from 'react';
+import React from 'react';
 
 export type CarouselNavProps = {
 	className?: string;

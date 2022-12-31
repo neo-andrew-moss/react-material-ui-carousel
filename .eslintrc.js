@@ -4,18 +4,16 @@ module.exports = {
     es2021: true,
   },
   extends: ["plugin:react/recommended", "xo"],
-  overrides: [
-    {
-      extends: ["xo-typescript"],
-      files: ["*.ts", "*.tsx"],
-    },
-  ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json']
   },
   plugins: ["react"],
   rules: {
     "no-mixed-spaces-and-tabs": 0,
+    "no-negated-condition": 0,
+    "no-unused-vars":0
   },
 };

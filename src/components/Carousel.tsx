@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import {sanitizeProps, useInterval} from './util';
 import {CarouselItem} from './CarouselItem';
 import {Indicators} from './Indicators';
-import {type CarouselProps} from './types';
+import {CarouselProps} from './types';
 
 const styles = makeStyles(() =>
 	createStyles({

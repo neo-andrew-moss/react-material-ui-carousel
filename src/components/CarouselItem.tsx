@@ -1,10 +1,10 @@
-import React, {type ReactNode, useEffect, useRef, useCallback} from 'react';
+import React, {ReactNode, useEffect, useRef, useCallback} from 'react';
 import {createStyles, makeStyles} from '@material-ui/core/styles';
 import {
 	AnimatePresence,
 	motion,
-	type MotionProps,
-	type PanInfo,
+	MotionProps,
+	PanInfo,
 } from 'framer-motion/dist/framer-motion';
 
 const styles = makeStyles(() =>

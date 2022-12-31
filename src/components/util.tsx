@@ -1,5 +1,5 @@
-import React, {type ReactNode, useEffect, useRef} from 'react';
-import {type CarouselNavProps, type CarouselProps} from './types';
+import React, {ReactNode, useEffect, useRef} from 'react';
+import {CarouselNavProps, CarouselProps} from './types';
 
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
