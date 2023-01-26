@@ -48,9 +48,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "dependencies": {
-    "framer-motion": "6.5.1"
-  },
   "devDependencies": {
     "@types/react": "^17.0.52",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
@@ -80,5 +77,8 @@
     "react-dom": {
       "optional": false
     }
+  },
+  "dependencies": {
+    "framer-motion": "^4.1.17"
   }
 }

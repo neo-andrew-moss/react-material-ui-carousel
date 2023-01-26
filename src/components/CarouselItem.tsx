@@ -5,7 +5,7 @@ import {
 	motion,
 	MotionProps,
 	PanInfo,
-} from 'framer-motion/dist/framer-motion';
+} from 'framer-motion';
 
 const styles = makeStyles(() =>
 	createStyles({
