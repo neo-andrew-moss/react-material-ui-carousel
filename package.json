@@ -1,6 +1,6 @@
 {
   "name": "react-material-ui-carousel-alt",
-  "version": "0.0.7-canary.0",
+  "version": "0.0.7",
   "description": "React Material UI Carousel from Learus with altered peerDependencies for @material-ui/*@4 ",
   "keywords": [
     "react",
