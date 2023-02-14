@@ -166,7 +166,7 @@ export const CarouselItem = ({
 	return (
 		<div className={classes.item} >
 			<AnimatePresence custom={isNext}>
-				<motion.div {...(swipe && dragProps)} style={{height: '100%'}}>
+				<motion.div {...(swipe && dragProps)}>
 					<motion.div
 						custom={isNext}
 						variants={variants}
