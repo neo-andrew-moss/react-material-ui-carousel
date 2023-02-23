@@ -166,18 +166,18 @@ export const CarouselItem = ({
 	return (
 		<div className={classes.item} >
 			<AnimatePresence custom={isNext}>
-				<motion.div {...(swipe && dragProps)}>
-					<motion.div
-						custom={isNext}
-						variants={variants}
-						animate={animate}
-						transition={{
-							x: {type: 'tween', duration, delay: 0},
-							opacity: {duration},
-						}}
-						style={{position: 'relative', height: '100%'}}
-					>
-						                        <div ref={divRef} style={{height}}>
+				<motion.div
+					custom={isNext}
+					variants={variants}
+					animate={animate}
+					transition={{
+						x: {type: 'tween', duration, delay: 0},
+						opacity: {duration},
+					}}
+					style={{position: 'relative', height: '100%'}}
+				>
+					<motion.div {...(swipe && dragProps)}>
+						<div ref={divRef} style={{height}}>
 							{child}
 						</div>
 					</motion.div>
